@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.AlbumMapper" >
+  <resultMap id="BaseResultMap" type="com.baizhi.entity.Album" >
+    <id column="album_id" property="albumId" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="cover_path" property="coverPath" jdbcType="VARCHAR" />
+    <result column="count" property="count" jdbcType="INTEGER" />
+    <result column="score" property="score" jdbcType="INTEGER" />
+    <result column="author" property="author" jdbcType="VARCHAR" />
+    <result column="teller" property="teller" jdbcType="VARCHAR" />
+    <result column="pulish_date" property="pulishDate" jdbcType="DATE" />
+    <result column="brief" property="brief" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    album_id, title, cover_path, count, score, author, teller, pulish_date, brief
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from c_album
+    where album_id = #{albumId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from c_album
+    where album_id = #{albumId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.baizhi.entity.Album" >
+    insert into c_album (album_id, title, cover_path, 
+      count, score, author, 
+      teller, pulish_date, brief
+      )
+    values (#{albumId,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{coverPath,jdbcType=VARCHAR}, 
+      #{count,jdbcType=INTEGER}, #{score,jdbcType=INTEGER}, #{author,jdbcType=VARCHAR}, 
+      #{teller,jdbcType=VARCHAR}, #{pulishDate,jdbcType=DATE}, #{brief,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.baizhi.entity.Album" >
+    insert into c_album
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="albumId != null" >
+        album_id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="coverPath != null" >
+        cover_path,
+      </if>
+      <if test="count != null" >
+        count,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="author != null" >
+        author,
+      </if>
+      <if test="teller != null" >
+        teller,
+      </if>
+      <if test="pulishDate != null" >
+        pulish_date,
+      </if>
+      <if test="brief != null" >
+        brief,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="albumId != null" >
+        #{albumId,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="coverPath != null" >
+        #{coverPath,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null" >
+        #{count,jdbcType=INTEGER},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="author != null" >
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="teller != null" >
+        #{teller,jdbcType=VARCHAR},
+      </if>
+      <if test="pulishDate != null" >
+        #{pulishDate,jdbcType=DATE},
+      </if>
+      <if test="brief != null" >
+        #{brief,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.baizhi.entity.Album" >
+    update c_album
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="coverPath != null" >
+        cover_path = #{coverPath,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null" >
+        count = #{count,jdbcType=INTEGER},
+      </if>
+      <if test="score != null" >
+        score = #{score,jdbcType=INTEGER},
+      </if>
+      <if test="author != null" >
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="teller != null" >
+        teller = #{teller,jdbcType=VARCHAR},
+      </if>
+      <if test="pulishDate != null" >
+        pulish_date = #{pulishDate,jdbcType=DATE},
+      </if>
+      <if test="brief != null" >
+        brief = #{brief,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where album_id = #{albumId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.baizhi.entity.Album" >
+    update c_album
+    set title = #{title,jdbcType=VARCHAR},
+      cover_path = #{coverPath,jdbcType=VARCHAR},
+      count = #{count,jdbcType=INTEGER},
+      score = #{score,jdbcType=INTEGER},
+      author = #{author,jdbcType=VARCHAR},
+      teller = #{teller,jdbcType=VARCHAR},
+      pulish_date = #{pulishDate,jdbcType=DATE},
+      brief = #{brief,jdbcType=VARCHAR}
+    where album_id = #{albumId,jdbcType=VARCHAR}
+  </update>
+</mapper>
